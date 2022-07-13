@@ -1,0 +1,15 @@
+{
+  "languages": [
+    "typescript",
+    "elixir",
+    "gleam",
+    "ruby"
+  ],
+  "frameworks": [
+    "phoenix",
+    "nest.js",
+    "ruby on rails",
+    "react",
+    "next.js"
+  ]
+}

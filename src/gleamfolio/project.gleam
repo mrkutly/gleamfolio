@@ -10,12 +10,17 @@ pub type Project {
   Project(title: String, details: String, link: Option(String), date: String)
 }
 
-pub fn render_projects() {
+pub fn render_projects() -> List(Node) {
   assert Ok(json_string) = file.read("data/projects.json")
   assert Ok(projects) = projects_from_json(json_string)
 
   projects
   |> list.map(project_to_html)
+  |> projects_grid()
+  |> node_to_node_list()
+  |> list.prepend(work_animation())
+  |> work_section()
+  |> node_to_node_list
 }
 
 fn projects_from_json(
@@ -61,4 +66,20 @@ fn project_details(project: Project) -> Node {
     [attrs.class("project-details reveal")],
     [html.p([], [html.Text(project.details)])],
   )
+}
+
+fn projects_grid(children: List(Node)) -> Node {
+  html.div([attrs.class("work-grid")], children)
+}
+
+fn work_animation() -> Node {
+  html.div([attrs.id("work-animation")], [])
+}
+
+fn node_to_node_list(a: Node) -> List(Node) {
+  [a]
+}
+
+fn work_section(children: List(Node)) -> Node {
+  html.section([attrs.id("work")], children)
 }
