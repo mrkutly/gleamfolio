@@ -4,11 +4,8 @@ import gleam/html
 import nakai
 
 pub fn main() {
-  assert Ok(contents) = file.read("data/projects.json")
-
   assert Ok(Nil) =
-    contents
-    |> render_projects
+    render_projects()
     |> html.html([], _)
     |> nakai.html
     |> nakai.render_doc(doctype: html.doctype("html"))

@@ -1,4 +1,5 @@
 import gleam/json
+import gleam/erlang/file
 import gleam/dynamic.{decode4, field, list, optional, string}
 import gleam/option.{None, Option, Some}
 import gleam/html.{Node}
@@ -9,7 +10,8 @@ pub type Project {
   Project(title: String, details: String, link: Option(String), date: String)
 }
 
-pub fn render_projects(json_string: String) {
+pub fn render_projects() {
+  assert Ok(json_string) = file.read("data/projects.json")
   assert Ok(projects) = projects_from_json(json_string)
 
   projects
