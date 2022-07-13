@@ -1,0 +1,32 @@
+[
+  {
+    "link": null,
+    "date": "01.2022",
+    "title": "Almanac Slack Integration",
+    "details": "Built a Slack application that allows users to take actions in the Almanac platform from slack notifications"
+  },
+  {
+    "link": null,
+    "date": "03.2021",
+    "title": "Respondent Atlas Search",
+    "details": "Integrated Atlas Search into the Respondent platform, allowing our admins to quickly search our collection of 1.2 million profiles based on 15 different matching criteria. Allows us to leverage the power of the Lucene engine without the hassle of managing an Elastic Search service."
+  },
+  {
+    "link": null,
+    "date": "01.2021",
+    "title": "Respondent Zoom Integration",
+    "details": "Integrated the Zoom API into the Respondent platform, allowing research participants to schedule video calls with researchers without gaining access to their private meeting links. Launched with 0 bugs reported."
+  },
+  {
+    "link": "https://youtu.be/BAujAysxmeo",
+    "date": "07.2020",
+    "title": "Taboola Client Properties UI",
+    "details": " An in-browser IDE for updating, staging, and deploying code changes to publishers' websites. Saves ~350 hours/month for the Professional Services engineers by simplifying and automating our deployment processes. Built with React, Redux/Thunk, and CodeMirror for the front end. I also built a backend service with Express that is used to provide in-editor linting hints of CSS and JS. All services are deployed with Docker and Kubernetes."
+  },
+  {
+    "link": "https://mantrapercussion.org",
+    "date": "02.2019",
+    "title": "Mantra Percussion",
+    "details": " Website for the NYC-based percussion band Mantra Percussion. Built with Gatsby, Typescript and styled-components. Hosted on Netlify. WIP."
+  }
+]
