@@ -1,0 +1,640 @@
+@font-face {
+	font-family: "Noto Sans JP";
+	font-display: fallback;
+	font-style: normal;
+	font-weight: 100;
+	src: local("Noto Sans Japanese Thin"), local("NotoSansJapanese-Thin"),
+		url("/static/fonts/noto-sans-jp-v23-latin-100.woff2") format("woff2"),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url("/static/fonts/noto-sans-jp-v23-latin-100.woff") format("font-woff");
+	/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+	font-family: "Noto Sans JP";
+	font-display: fallback;
+	font-style: normal;
+	font-weight: 300;
+	src: local("Noto Sans Japanese Light"), local("NotoSansJapanese-Light"),
+		url("/static/fonts/noto-sans-jp-v23-latin-300.woff2") format("woff2"),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url("/static/fonts/noto-sans-jp-v23-latin-300.woff") format("font-woff");
+	/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+	font-family: "Noto Sans JP";
+	font-display: fallback;
+	font-style: normal;
+	font-weight: 400;
+	src: local("Noto Sans Japanese Regular"), local("NotoSansJapanese-Regular"),
+		url("/static/fonts/noto-sans-jp-v23-latin-regular.woff2") format("woff2"),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url("/static/fonts/noto-sans-jp-v23-latin-regular.woff") format("font-woff");
+	/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+	font-family: "Noto Sans JP";
+	font-display: fallback;
+	font-style: normal;
+	font-weight: 500;
+	src: local("Noto Sans Japanese Medium"), local("NotoSansJapanese-Medium"),
+		url("/static/fonts/noto-sans-jp-v23-latin-500.woff2") format("woff2"),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url("/static/fonts/noto-sans-jp-v23-latin-500.woff") format("font-woff");
+	/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+	font-family: "Noto Sans JP";
+	font-display: fallback;
+	font-style: normal;
+	font-weight: 700;
+	src: local("Noto Sans Japanese Bold"), local("NotoSansJapanese-Bold"),
+		url("/static/fonts/noto-sans-jp-v23-latin-700.woff2") format("woff2"),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url("/static/fonts/noto-sans-jp-v23-latin-700.woff") format("font-woff");
+	/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+	font-family: "Noto Sans JP";
+	font-style: normal;
+	font-display: fallback;
+	font-weight: 900;
+	src: local("Noto Sans Japanese Black"), local("NotoSansJapanese-Black"),
+		url("/static/fonts/noto-sans-jp-v23-latin-900.woff2") format("woff2"),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url("/static/fonts/noto-sans-jp-v23-latin-900.woff") format("font-woff");
+	/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/** GLOBAL  */
+
+body {
+	font-family: "Noto Sans JP", Roboto, Arial, Helvetica, sans-serif;
+	font-weight: 400;
+	letter-spacing: 2px;
+	color: #231f1f;
+	padding: 8px 0;
+	overflow-x: hidden;
+	margin: 0;
+}
+
+.reveal {
+	opacity: 0;
+	transform: translateY(20vh) skewX(-15deg);
+	transition: all 1s ease-out;
+}
+
+.reveal.revealed {
+	opacity: 1;
+	transform: translateY(0px) skewX(0deg);
+}
+
+/** HEADER */
+
+header {
+	font-size: 1rem;
+	display: grid;
+	grid-template-columns: auto 135px 135px 135px;
+	align-items: center;
+	padding: 5vh 2vw 0;
+}
+
+header a.first {
+	grid-column-start: 2;
+	grid-column-end: 3;
+}
+
+header a.second {
+	grid-column-start: 3;
+	grid-column-end: 4;
+}
+
+header span.mode-toggle {
+	font-size: 2em;
+	grid-column-start: 4;
+	grid-column-end: 5;
+}
+
+header a {
+	transition: color 0.1s linear;
+	text-decoration: none;
+	color: #666666;
+	letter-spacing: 3px;
+	padding-bottom: 10px;
+	width: fit-content;
+}
+
+header a:focus,
+header a:hover {
+	color: #00e8ac;
+	cursor: pointer;
+}
+
+header a:focus,
+header .mode-toggle:focus {
+	outline: none;
+	border-bottom: 1px solid #00e8ac;
+}
+
+#face {
+	z-index: 2;
+	position: -webkit-sticky;
+	position: sticky;
+	width: 200px;
+	top: 0;
+	height: 206px;
+	margin-top: calc(-10vh + -1rem + -8px);
+	margin-left: 34px;
+	background-image: url(/static/Circle.svg);
+	background-size: 0%;
+	background-position-x: 50%;
+	background-position-y: 50%;
+	background-repeat: no-repeat;
+	transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+}
+
+#face.stuck {
+	background-size: 100%;
+	width: 150px;
+}
+
+/** CONTACT PAGE  */
+
+main.contact {
+	display: grid;
+	height: calc(100vh - 233px);
+}
+
+main.contact div {
+	margin: 0 auto;
+	font-size: 5rem;
+	font-weight: bold;
+	text-align: center;
+	word-break: break-word;
+}
+
+main.contact p#email {
+	transition: color 0.1s linear;
+	cursor: pointer;
+}
+
+main.contact p#email:hover,
+main.contact p#email:focus {
+	color: #00e8ac;
+}
+
+main.contact div.contact-message p {
+	font-size: 0.23em;
+	font-weight: normal;
+}
+
+main.contact p:focus {
+	outline: none;
+	border-bottom: 1px solid #00e8ac;
+}
+
+/** Intro  */
+
+section#intro {
+	margin: 10vh 10vw 70vh 30vw;
+	max-width: 880px;
+	font-size: 2rem;
+	letter-spacing: 4px;
+}
+
+section#intro p:nth-of-type(1) {
+	margin-top: 0;
+}
+
+section#intro p:nth-of-type(3) {
+	max-width: 656px;
+}
+
+.color {
+	color: #00e8ac;
+}
+
+/** SKILLS  */
+
+section#skills {
+	display: grid;
+	grid-template-columns: 0.88fr 2fr;
+	margin-bottom: 80vh;
+	font-size: 1rem;
+}
+
+div#skills-animation,
+div#work-animation {
+	opacity: 0.5;
+}
+
+div#skills-animation {
+	transform: translateX(-5vw);
+}
+
+section#skills div.skills-grid {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	align-self: center;
+}
+
+section#skills div.skills-grid h2 {
+	font-weight: 500;
+	letter-spacing: 4px;
+	line-height: 3em;
+	border-bottom: 2px solid #ccc;
+}
+
+section#skills div.skills-subgrid {
+	display: grid;
+	max-width: 750px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	margin-top: 6vh;
+}
+
+section#skills div.skills-subgrid h3 {
+	font-size: 1em;
+	letter-spacing: 3.5px;
+	margin-bottom: 3vh;
+	margin-top: 3.7vh;
+	line-height: 1.5em;
+	padding-right: 10px;
+}
+
+section#skills div.skills-subgrid li {
+	list-style: none;
+	letter-spacing: 3px;
+	justify-self: start;
+	line-height: 2.5em;
+}
+
+section#skills div.skills-subgrid ul {
+	align-self: start;
+	padding-left: 0;
+	padding-right: 10px;
+	margin-block-end: 0;
+	margin-bottom: 3vh;
+	margin-top: 3vh;
+}
+
+section#skills div.skills-subgrid:nth-of-type(1) ul {
+	height: 100%;
+}
+
+/** WORK */
+
+section#work {
+	display: grid;
+	grid-template-columns: 1.5fr 3fr 2.03fr;
+	margin-bottom: 50vh;
+}
+
+section#work:focus {
+	outline: none;
+	box-shadow: 0 0 10px #00e8ac;
+}
+
+section#work div#work-animation {
+	grid-column-start: 3;
+	transform: translateX(5vw);
+}
+
+section#work div#work-animation g g g:first-of-type {
+	display: none;
+}
+
+section#work div.work-grid {
+	align-self: center;
+	grid-column-start: 2;
+	grid-row-start: 1;
+	min-width: 630px;
+}
+
+section#work div.project-container {
+	margin: 8vh 0;
+}
+
+section#work div.project-container a {
+	text-decoration: none;
+}
+
+section#work div.project {
+	display: flex;
+	align-items: baseline;
+	/* flex-wrap: nowrap; */
+	color: #231f1f;
+}
+
+section#work div.project span.date {
+	font-size: 1.3rem;
+}
+
+section#work div.project span.title {
+	text-decoration: none;
+	font-size: 3rem;
+	margin-left: 30px;
+}
+
+section#work div.project span.title:after {
+	content: "";
+	background-image: url(/static/Highlighter.svg);
+	display: block;
+	height: 21px;
+	max-width: 0;
+	transform: translateY(2px);
+	background-repeat: no-repeat;
+	transition: max-width ease-out 0.3s;
+}
+
+section#work div.project span.title:hover:after {
+	content: "";
+	background-image: url(/static/Highlighter.svg);
+	display: block;
+	height: 21px;
+	max-width: 100%;
+	transform: translateY(2px);
+	background-repeat: no-repeat;
+}
+
+section#work div.project-container:hover span.title,
+section#work div.project-container:focus span.title {
+	background-position-y: 2.5rem;
+}
+
+section#work div.project-details {
+	color: #231f1f;
+	font-size: 1rem;
+	display: none;
+	position: absolute;
+	z-index: 1;
+	transform: translate(17rem, 0.3rem);
+	border-radius: 1%;
+	background-color: #00e8ac;
+	width: 400px;
+	height: fit-content;
+	padding: 10px;
+}
+
+section#work div.project-container:hover div.project-details,
+section#work div.project-container:focus div.project-details {
+	display: block;
+}
+
+.ad-message {
+	font-weight: 600;
+}
+
+/** Footer  */
+footer {
+	display: flexbox;
+	font-size: 1rem;
+	padding-bottom: 5vh;
+}
+
+footer a {
+	margin: 0 30px;
+	transition: color 0.1s linear;
+	text-decoration: none;
+	color: #666666;
+	letter-spacing: 3px;
+	width: fit-content;
+}
+
+footer a:focus,
+footer a:hover {
+	color: #00e8ac;
+	cursor: pointer;
+}
+
+footer a:focus {
+	outline: none;
+	border-bottom: 1px solid #00e8ac;
+}
+
+/** TABLET STYLES */
+@media (max-width: 740px) {
+	html {
+		font-size: 90%;
+	}
+
+	body {
+		font-size: 8px;
+	}
+
+	#face {
+		width: 150px;
+	}
+
+	section#skills div.skills-subgrid h3 {
+		padding-right: 20px;
+	}
+
+	section#skills div.skills-subgrid ul {
+		padding-right: 20px;
+	}
+
+	section#work div.project-details {
+		transform: translate(30vw, -20vh);
+	}
+}
+
+/* TABLET */
+/* @media (max-width: 600px) {
+	section#work div.work-grid {
+		align-self: center;
+		grid-column-start: 1;
+		grid-column-end: 4;
+	}
+
+	section#work div#work-animation,
+	section#skills div#skills-animation {
+		display: none;
+	}
+
+	section#work div.project span.title {
+		font-size: 2.5rem;
+	}
+
+	section#work div.project span.date {
+		font-size: 1rem;
+	}
+
+	
+} */
+
+/* MOBILE */
+@media (max-width: 600px) {
+	html {
+		font-size: 72%;
+	}
+
+	header {
+		justify-items: start;
+	}
+
+	#face {
+		width: 100px;
+		top: 15px;
+		height: 100px;
+		margin-bottom: 2rem;
+		margin-top: -6rem;
+	}
+
+	#face.stuck {
+		background-size: 80%;
+		height: 88px;
+		width: 100px;
+	}
+
+	section#work div#work-animation,
+	section#skills div#skills-animation {
+		transform: rotate(-85deg);
+		height: 90vw;
+	}
+
+	section#intro {
+		margin: 0 2rem;
+	}
+
+	section#skills {
+		display: block;
+		margin: 7rem 2rem 0;
+	}
+
+	section#skills div.skills-grid div.reveal:first-of-type {
+		float: left;
+		margin-right: 20vw;
+	}
+
+	section#skills div.skills-subgrid {
+		display: inline-block;
+	}
+
+	section#work {
+		display: block;
+		margin: 7rem 2rem 20rem;
+	}
+
+	section#work div.work-grid {
+		display: inline;
+	}
+
+	section#work div.project {
+		display: block;
+	}
+
+	section#work div.project span.date {
+		display: block;
+	}
+
+	section#work div.project span.title {
+		margin-left: 0;
+	}
+
+	section#work div.project-details {
+		display: block;
+		position: static;
+		width: fit-content;
+	}
+
+	.reveal {
+		transform: translateY(20vh) skewX(0deg);
+	}
+
+	section#work div.project-details.reveal {
+		opacity: 0;
+		transform: translateY(20vh) skewX(0);
+		transition: all 1s ease-out;
+	}
+
+	section#work div.project-details.reveal.revealed {
+		opacity: 1;
+		transform: translateY(0px) skewX(0deg);
+	}
+
+	footer {
+		display: flex;
+		justify-content: space-evenly;
+	}
+
+	footer a {
+		margin: 0;
+	}
+}
+
+@media (max-width: 480px) {
+
+	header a.first,
+	header a.second {
+		visibility: hidden;
+		margin-bottom: 2rem;
+		width: 150px;
+		top: 0;
+		height: 100px;
+		margin-top: -6rem;
+	}
+
+	section#skills {
+		font-size: 1.3rem;
+	}
+
+	section#skills div#skills-animation {
+		margin: 19vh 0;
+	}
+
+	section#skills div.skills-grid h2 {
+		display: none;
+	}
+
+	section#skills div.skills-subgrid ul {
+		margin: 0;
+	}
+
+	section#skills div.skills-subgrid ul li {
+		margin: 5px 0;
+	}
+
+	section#work div.project-details {
+		font-size: 1.25rem;
+	}
+
+	section#work div.project-container {
+		margin: 25vh 0;
+	}
+
+	main.contact {
+		margin: 2vh;
+	}
+
+	main.contact p#email {
+		font-size: 3rem;
+	}
+
+	main.contact p#email::selection {
+		background-color: transparent;
+		color: #00e8ac;
+	}
+
+	main.contact+footer {
+		display: none;
+	}
+
+	footer {
+		flex-wrap: wrap;
+	}
+
+	footer a {
+		margin: 0 20px 20px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.reveal {
+		opacity: 1;
+		transform: translateY(0px) skewX(0deg);
+	}
+}

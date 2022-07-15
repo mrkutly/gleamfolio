@@ -1,5 +1,5 @@
-import gleam/html.{Node, Text, div, h2, h3, li, section, ul}
-import gleam/html/attrs
+import nakai/html.{Text, div, h2, h3, li, section, ul}
+import nakai/html/attrs
 import gleam/list
 
 pub type Interests {
@@ -11,7 +11,7 @@ const interests = Interests(
   frameworks: ["phoenix", "nest.js", "ruby on rails", "react", "next.js"],
 )
 
-pub fn component() -> Node {
+pub fn component() {
   section(
     [attrs.id("skills")],
     [

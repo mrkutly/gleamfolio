@@ -1,6 +1,6 @@
 import gleam/option.{None, Option, Some}
-import gleam/html.{Node}
-import gleam/html/attrs
+import nakai/html.{Node}
+import nakai/html/attrs
 import gleam/list
 
 pub type Project {
@@ -40,7 +40,7 @@ const projects = [
   ),
 ]
 
-pub fn component() -> List(Node) {
+pub fn component() -> List(Node(a)) {
   projects
   |> list.map(project_component)
   |> projects_grid()
@@ -50,21 +50,21 @@ pub fn component() -> List(Node) {
   |> node_to_node_list
 }
 
-fn project_component(project: Project) -> Node {
+fn project_component(project: Project) {
   project
   |> maybe_wrap_in_link(project_info(project))
   |> list.prepend([project_details(project)], _)
   |> html.div([attrs.class("project-container")], _)
 }
 
-fn maybe_wrap_in_link(project: Project, node: Node) -> Node {
+fn maybe_wrap_in_link(project: Project, node: Node(a)) -> Node(a) {
   case project.link {
     Some(link) -> html.a([attrs.href(link)], [node])
     None -> node
   }
 }
 
-fn project_info(project: Project) -> Node {
+fn project_info(project: Project) {
   html.div(
     [attrs.class("project reveal")],
     [
@@ -74,25 +74,25 @@ fn project_info(project: Project) -> Node {
   )
 }
 
-fn project_details(project: Project) -> Node {
+fn project_details(project: Project) {
   html.div(
     [attrs.class("project-details reveal")],
     [html.p([], [html.Text(project.details)])],
   )
 }
 
-fn projects_grid(children: List(Node)) -> Node {
+fn projects_grid(children: List(Node(a))) -> Node(a) {
   html.div([attrs.class("work-grid")], children)
 }
 
-fn work_animation() -> Node {
+fn work_animation() {
   html.div([attrs.id("work-animation")], [])
 }
 
-fn node_to_node_list(a: Node) -> List(Node) {
+fn node_to_node_list(a: Node(a)) -> List(Node(a)) {
   [a]
 }
 
-fn work_section(children: List(Node)) -> Node {
+fn work_section(children: List(Node(a))) -> Node(a) {
   html.section([attrs.id("work")], children)
 }
