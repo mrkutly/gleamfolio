@@ -1,6 +1,3 @@
-import gleam/json
-import gleam/dynamic.{decode2, field, string}
-import gleam/erlang/file
 import gleam/html.{Node, Text, div, h2, h3, li, section, ul}
 import gleam/html/attrs
 import gleam/list
@@ -9,24 +6,12 @@ pub type Interests {
   Interests(languages: List(String), frameworks: List(String))
 }
 
-pub fn render_interests() {
-  assert Ok(json_string) = file.read("data/interests.json")
-  assert Ok(interests) = interests_from_json(json_string)
-  interests_to_html(interests)
-}
+const interests = Interests(
+  languages: ["typescript", "elixir", "gleam", "ruby"],
+  frameworks: ["phoenix", "nest.js", "ruby on rails", "react", "next.js"],
+)
 
-fn interests_from_json(json_string) -> Result(Interests, json.DecodeError) {
-  let interests_decoder =
-    decode2(
-      Interests,
-      field("languages", of: dynamic.list(of: string)),
-      field("frameworks", of: dynamic.list(of: string)),
-    )
-
-  json.decode(from: json_string, using: interests_decoder)
-}
-
-fn interests_to_html(interests: Interests) -> Node {
+pub fn component() -> Node {
   section(
     [attrs.id("skills")],
     [

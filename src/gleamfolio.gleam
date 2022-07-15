@@ -1,28 +1,30 @@
-import gleam/io
-import gleam/list
-import gleam/erlang/file
-import gleamfolio/project.{render_projects}
-import gleamfolio/interests.{render_interests}
-import gleam/html
-import nakai
+import gleam/erlang
+import pages/home
+import gleam/http/cowboy
+import gleam/http/response.{Response}
+import gleam/http/request.{Request}
+import gleam/bit_builder.{BitBuilder}
 
+// Start it on port 8080!
+//
 pub fn main() {
-  assert Ok(Nil) =
-    render_interests()
-    |> list.prepend(render_projects(), _)
-    |> html.html([], _)
-    |> nakai.html
-    |> nakai.render_doc(doctype: html.doctype("html"))
-    |> save_html
+  assert Ok(_) = cowboy.start(gleamfolio_server, on_port: 8080)
+  erlang.sleep_forever()
 }
 
-fn save_html(html: String) {
-  let path = "dist/index.html"
-  case file.is_file(path) {
-    True -> file.write(html, to: path)
-    False -> {
-      assert Ok(Nil) = file.make_directory("dist")
-      file.write(html, to: path)
-    }
+fn gleamfolio_server(request: Request(t)) -> Response(BitBuilder) {
+  let body =
+    router(request)
+    |> bit_builder.from_string
+
+  response.new(200)
+  |> response.prepend_header("made-with", "Gleam")
+  |> response.set_body(body)
+}
+
+fn router(request: Request(t)) -> String {
+  case request.path {
+    "/contact" -> "contact page will come!"
+    _ -> home.page()
   }
 }
