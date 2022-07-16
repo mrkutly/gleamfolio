@@ -13,6 +13,7 @@ type Route {
   HtmlRoute(content: String)
   StaticRoute(content: BitString)
   JsRoute(content: BitString)
+  NotFound
 }
 
 pub fn main() {
@@ -22,9 +23,18 @@ pub fn main() {
 
 fn my_silly_portfolio(request: Request(t)) -> Response(BitBuilder) {
   let route = router(request)
-  response.new(200)
+  let status = status_code(route)
+
+  response.new(status)
   |> set_headers(route, _)
   |> set_body(route, _)
+}
+
+fn status_code(route: Route) {
+  case route {
+    NotFound -> 404
+    _ -> 200
+  }
 }
 
 fn set_headers(route: Route, res: Response(String)) {
@@ -42,7 +52,7 @@ fn set_headers(route: Route, res: Response(String)) {
         "text/javascript; charset=utf-8",
       )
 
-    StaticRoute(_) ->
+    _ ->
       res
       |> response.prepend_header("made-with", "Gleam")
   }
@@ -53,6 +63,7 @@ fn set_body(route: Route, res: Response(String)) {
     HtmlRoute(content) -> bit_builder.from_string(content)
     StaticRoute(content) -> bit_builder.from_bit_string(content)
     JsRoute(content) -> bit_builder.from_bit_string(content)
+    NotFound -> bit_builder.from_string("Not found.")
   }
   response.set_body(res, body)
 }
@@ -74,5 +85,6 @@ fn router(request: Request(t)) -> Route {
       assert Ok(content) = file.read_bits("static/favicon.ico")
       StaticRoute(content)
     }
+    _ -> NotFound
   }
 }
