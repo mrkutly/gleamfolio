@@ -1,1 +1,1 @@
-My portfolio site, but in gleam.
+My portfolio site, built in gleam with nakai.
