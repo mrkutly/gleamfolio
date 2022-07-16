@@ -22,7 +22,7 @@ pub fn component() {
           highlighted("static type systems"),
           html.Text(", "),
           highlighted("dogs"),
-          html.Text(", and"),
+          html.Text(", and "),
           highlighted("cooking"),
           html.Text("."),
         ],
