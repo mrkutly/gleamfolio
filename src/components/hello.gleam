@@ -16,7 +16,7 @@ pub fn component() {
             "I spend most of my days building an OS for distributed work at ",
           ),
           highlighted("Almanac.io"),
-          html.Text(" I really like "),
+          html.Text(". I really like "),
           highlighted("functional programming"),
           html.Text(", "),
           highlighted("static type systems"),
