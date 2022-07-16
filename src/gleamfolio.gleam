@@ -12,6 +12,7 @@ import pages/contact
 type Route {
   HtmlRoute(content: String)
   StaticRoute(content: BitString)
+  JsRoute(content: BitString)
 }
 
 pub fn main() {
@@ -33,6 +34,14 @@ fn set_headers(route: Route, res: Response(String)) {
       |> response.prepend_header("made-with", "Gleam")
       |> response.prepend_header("content-type", "text/html; charset=utf-8")
 
+    JsRoute(_) ->
+      res
+      |> response.prepend_header("made-with", "Gleam")
+      |> response.prepend_header(
+        "content-type",
+        "text/javascript; charset=utf-8",
+      )
+
     StaticRoute(_) ->
       res
       |> response.prepend_header("made-with", "Gleam")
@@ -43,6 +52,7 @@ fn set_body(route: Route, res: Response(String)) {
   let body = case route {
     HtmlRoute(content) -> bit_builder.from_string(content)
     StaticRoute(content) -> bit_builder.from_bit_string(content)
+    JsRoute(content) -> bit_builder.from_bit_string(content)
   }
   response.set_body(res, body)
 }
@@ -51,6 +61,11 @@ fn router(request: Request(t)) -> Route {
   case uri.path_segments(request.path) {
     ["contact"] -> HtmlRoute(contact.page())
     [] -> HtmlRoute(home.page())
+    ["static", "js", file] -> {
+      assert Ok(content) =
+        file.read_bits(string.join(["static", "js", file], "/"))
+      JsRoute(content)
+    }
     ["static", ..rest] -> {
       assert Ok(content) = file.read_bits(string.join(["static", ..rest], "/"))
       StaticRoute(content)

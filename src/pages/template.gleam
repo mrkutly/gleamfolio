@@ -3,7 +3,7 @@ import nakai/html.{Node, Text}
 import nakai/html/attrs
 
 pub fn page(contents: List(Node(a))) {
-  html.Fragment([head(), html.body([], contents)])
+  html.Fragment([head(), ..contents])
   |> nakai.render
 }
 

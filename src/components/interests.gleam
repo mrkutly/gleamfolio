@@ -15,25 +15,21 @@ pub fn component() {
   section(
     [attrs.id("skills")],
     [
+      div([attrs.class("skills-animation")], []),
       div(
-        [attrs.class("skills-animation")],
+        [attrs.class("skills-grid")],
         [
+          h2([attrs.class("reveal")], [Text("Skills &amp; Interests")]),
           div(
-            [attrs.class("skills-grid")],
+            [attrs.class("reveal")],
             [
-              h2([attrs.class("reveal")], [Text("Skills &amp; Interests")]),
               div(
-                [attrs.class("reveal")],
+                [attrs.class("skills-subgrid")],
                 [
-                  div(
-                    [attrs.class("skills-subgrid")],
-                    [
-                      h3([], [Text("LANGUAGES")]),
-                      unordered_list(interests.languages),
-                      h3([], [Text("FRAMEWORKS")]),
-                      unordered_list(interests.frameworks),
-                    ],
-                  ),
+                  h3([], [Text("LANGUAGES")]),
+                  unordered_list(interests.languages),
+                  h3([], [Text("FRAMEWORKS")]),
+                  unordered_list(interests.frameworks),
                 ],
               ),
             ],
