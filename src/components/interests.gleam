@@ -15,7 +15,7 @@ pub fn component() {
   section(
     [attrs.id("skills")],
     [
-      div([attrs.class("skills-animation")], []),
+      div([attrs.id("skills-animation")], []),
       div(
         [attrs.class("skills-grid")],
         [

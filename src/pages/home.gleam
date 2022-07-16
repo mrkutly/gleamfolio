@@ -3,7 +3,7 @@ import components/interests
 import components/projects
 import components/headers
 import components/hello
-import components/footer
+import components/footers
 import components/home_scripts
 import nakai/html
 import nakai/html/attrs
@@ -20,7 +20,7 @@ pub fn page() {
           [],
           [hello.component(), interests.component(), projects.component()],
         ),
-        footer.component(),
+        footers.home(),
       ],
     ),
     home_scripts.body(),

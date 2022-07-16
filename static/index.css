@@ -166,7 +166,7 @@ header .mode-toggle:focus {
 
 main.contact {
 	display: grid;
-	height: calc(100vh - 233px);
+	height: calc(100vh - 249px);
 }
 
 main.contact div {

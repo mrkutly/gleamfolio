@@ -1,30 +1,20 @@
-import lottie from 'lottie-web'
-import faceData from '../res/animations/face.json'
-
 window.addEventListener("DOMContentLoaded", () => {
   const clipboard = ClipboardJS && new ClipboardJS("#email");
   const face = document.querySelector("#face");
   const contactMessage = document.querySelector(".contact-message");
 
-  applyEventListener(darkModeButton, toggleDarkMode);
-
   clipboard.on("success", () => showSuccessMessage(contactMessage));
   clipboard.on("error", () => showFailureMessage(contactMessage));
 
-  if (lottie) {
+  if (window.lottie && window.faceData) {
     const animationOptions = {
       container: face,
-      animationData: faceData,
+      animationData: window.faceData,
       loop: true,
       renderer: "svg",
       autoplay: true
     };
     window.anim = lottie.loadAnimation(animationOptions);
-  }
-
-  function applyEventListener(element, cb) {
-    element.addEventListener("click", cb);
-    element.addEventListener("keypress", e => e.which === 13 && cb(e));
   }
 
   function showSuccessMessage(messageElement) {

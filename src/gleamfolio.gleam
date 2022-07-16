@@ -70,5 +70,9 @@ fn router(request: Request(t)) -> Route {
       assert Ok(content) = file.read_bits(string.join(["static", ..rest], "/"))
       StaticRoute(content)
     }
+    ["favicon.ico"] -> {
+      assert Ok(content) = file.read_bits("static/favicon.ico")
+      StaticRoute(content)
+    }
   }
 }
