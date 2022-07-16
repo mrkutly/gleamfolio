@@ -40,14 +40,13 @@ const projects = [
   ),
 ]
 
-pub fn component() -> List(Node(a)) {
+pub fn component() {
   projects
   |> list.map(project_component)
   |> projects_grid()
   |> node_to_node_list()
   |> list.prepend(work_animation())
   |> work_section()
-  |> node_to_node_list
 }
 
 fn project_component(project: Project) {

@@ -9,9 +9,9 @@ import gleam/string
 import pages/home
 import pages/contact
 
-type Either(a, b) {
-  Left(a)
-  Right(b)
+type Route {
+  HtmlRoute(content: String)
+  StaticRoute(content: BitString)
 }
 
 pub fn main() {
@@ -20,23 +20,40 @@ pub fn main() {
 }
 
 fn my_silly_portfolio(request: Request(t)) -> Response(BitBuilder) {
-  let body = case router(request) {
-    Left(content) -> bit_builder.from_string(content)
-    Right(content) -> bit_builder.from_bit_string(content)
-  }
-
+  let route = router(request)
   response.new(200)
-  |> response.prepend_header("made-with", "Gleam")
-  |> response.set_body(body)
+  |> set_headers(route, _)
+  |> set_body(route, _)
 }
 
-fn router(request: Request(t)) -> Either(String, BitString) {
+fn set_headers(route: Route, res: Response(String)) {
+  case route {
+    HtmlRoute(_) ->
+      res
+      |> response.prepend_header("made-with", "Gleam")
+      |> response.prepend_header("content-type", "text/html; charset=utf-8")
+
+    StaticRoute(_) ->
+      res
+      |> response.prepend_header("made-with", "Gleam")
+  }
+}
+
+fn set_body(route: Route, res: Response(String)) {
+  let body = case route {
+    HtmlRoute(content) -> bit_builder.from_string(content)
+    StaticRoute(content) -> bit_builder.from_bit_string(content)
+  }
+  response.set_body(res, body)
+}
+
+fn router(request: Request(t)) -> Route {
   case uri.path_segments(request.path) {
-    ["contact"] -> Left(contact.page())
-    [] -> Left(home.page())
+    ["contact"] -> HtmlRoute(contact.page())
+    [] -> HtmlRoute(home.page())
     ["static", ..rest] -> {
       assert Ok(content) = file.read_bits(string.join(["static", ..rest], "/"))
-      Right(content)
+      StaticRoute(content)
     }
   }
 }

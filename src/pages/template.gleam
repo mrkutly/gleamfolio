@@ -9,7 +9,7 @@ pub fn page(contents: List(Node(a))) {
 
 fn head() {
   html.head([
-    html.title([], [Text("mark sauer-utley")]),
+    html.title([], [Text("✨ mark sauer-utley ✨")]),
     html.link([attrs.rel("stylesheet"), attrs.href("/static/index.css")]),
     html.link([attrs.rel("icon"), attrs.href("/static/favicon.png")]),
     html.link([
