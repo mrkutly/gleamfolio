@@ -4,7 +4,6 @@ import gleam/http/cowboy
 import gleam/http/response.{Response}
 import gleam/http/request.{Request}
 import gleam/bit_builder.{BitBuilder}
-import gleam/io
 import gleam/uri
 import gleam/string
 import gleam/list
