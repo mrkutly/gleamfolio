@@ -10,7 +10,7 @@ import gleam/list
 import pages/home
 import pages/contact
 
-type Route {
+pub type Route {
   HtmlRoute(content: String)
   StaticRoute(content: BitString, content_type: String)
   NotFound
@@ -82,7 +82,10 @@ fn set_body(route: Route, res: Response(String)) {
   response.set_body(res, body)
 }
 
-fn get_static_route(content: BitString, path_segments: List(String)) -> Route {
+pub fn get_static_route(
+  content: BitString,
+  path_segments: List(String),
+) -> Route {
   assert Ok(resource) = list.last(path_segments)
   let chunks = string.split(resource, on: ".")
   assert Ok(file_extension) = list.last(chunks)
