@@ -10,9 +10,15 @@ pub type Project {
 const projects = [
   Project(
     link: None,
+    date: "2023-2024",
+    title: "SafeBase AI Questionnaire Assistance",
+    details: "Built a platform to ingest security questionnaires, fill them out using AI, check human approval where necessary, and export them into their desired format.",
+  ),
+  Project(
+    link: None,
     date: "01.2022",
     title: "Almanac Slack Integration",
-    details: "Built a Slack application that allows users to take actions in the Almanac platform from slack notifications",
+    details: "Built a Slack application that allows users to take actions in the Almanac platform from slack notifications.",
   ),
   Project(
     link: None,
@@ -25,12 +31,6 @@ const projects = [
     date: "01.2021",
     title: "Respondent Zoom Integration",
     details: "Integrated the Zoom API into the Respondent platform, allowing research participants to schedule video calls with researchers without gaining access to their private meeting links. Launched with 0 bugs reported.",
-  ),
-  Project(
-    link: Some("https://youtu.be/BAujAysxmeo"),
-    date: "07.2020",
-    title: "Taboola Client Properties UI",
-    details: " An in-browser IDE for updating, staging, and deploying code changes to publishers' websites. Saves ~350 hours/month for the Professional Services engineers by simplifying and automating our deployment processes. Built with React, Redux/Thunk, and CodeMirror for the front end. I also built a backend service with Express that is used to provide in-editor linting hints of CSS and JS. All services are deployed with Docker and Kubernetes.",
   ),
   Project(
     link: Some("https://mantrapercussion.org"),
