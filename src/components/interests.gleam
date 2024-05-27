@@ -1,6 +1,6 @@
-import nakai/html.{Text, div, h2, h3, li, section, ul}
-import nakai/html/attrs
 import gleam/list
+import nakai/attr
+import nakai/html.{Text, div, h2, h3, li, section, ul}
 
 pub type Interests {
   Interests(languages: List(String), frameworks: List(String))
@@ -12,32 +12,20 @@ const interests = Interests(
 )
 
 pub fn component() {
-  section(
-    [attrs.id("skills")],
-    [
-      div([attrs.id("skills-animation")], []),
-      div(
-        [attrs.class("skills-grid")],
-        [
-          h2([attrs.class("reveal")], [Text("Skills &amp; Interests")]),
-          div(
-            [attrs.class("reveal")],
-            [
-              div(
-                [attrs.class("skills-subgrid")],
-                [
-                  h3([], [Text("LANGUAGES")]),
-                  unordered_list(interests.languages),
-                  h3([], [Text("FRAMEWORKS")]),
-                  unordered_list(interests.frameworks),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    ],
-  )
+  section([attr.id("skills")], [
+    div([attr.id("skills-animation")], []),
+    div([attr.class("skills-grid")], [
+      h2([attr.class("reveal")], [Text("Skills & Interests")]),
+      div([attr.class("reveal")], [
+        div([attr.class("skills-subgrid")], [
+          h3([], [Text("LANGUAGES")]),
+          unordered_list(interests.languages),
+          h3([], [Text("FRAMEWORKS")]),
+          unordered_list(interests.frameworks),
+        ]),
+      ]),
+    ]),
+  ])
 }
 
 fn unordered_list(items: List(String)) {

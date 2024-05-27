@@ -1,14 +1,11 @@
-import nakai/html
-import nakai/html/attrs
 import gleam/list
+import nakai/attr
+import nakai/html
 
 pub fn home() {
   html.footer(
     [],
-    list.append(
-      common_links(),
-      [footer_link(to: "/contact", saying: "Contact")],
-    ),
+    list.append(common_links(), [footer_link(to: "/contact", saying: "Contact")]),
   )
 }
 
@@ -31,5 +28,5 @@ fn common_links() {
 }
 
 fn footer_link(to href: String, saying text: String) {
-  html.a([attrs.href(href)], [html.span([], [html.Text(text)])])
+  html.a([attr.href(href)], [html.span([], [html.Text(text)])])
 }
