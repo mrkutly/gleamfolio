@@ -8,9 +8,9 @@ pub fn component() {
     ]),
     html.p([], [
       html.Text(
-        "I spend most of my days building an OS for distributed work at ",
+        "I spend most of my days building tools to automate security reviews at ",
       ),
-      highlighted("Almanac.io"),
+      highlighted("SafeBase.io"),
       html.Text(". I really like "),
       highlighted("functional programming"),
       html.Text(", "),
