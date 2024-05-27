@@ -1,4 +1,4 @@
-FROM ghcr.io/gleam-lang/gleam:v0.22.0-erlang-alpine
+FROM ghcr.io/gleam-lang/gleam:v1.1.0-erlang-alpine
 
 # Add project code
 COPY . /build/
@@ -7,7 +7,7 @@ COPY . /build/
 RUN cd /build \
   && gleam export erlang-shipment \
   && mv build/erlang-shipment /app \
-  && mv /build/static /app \
+  && mv /build/priv/static /app \
   && rm -r /build
 
 # Run the server
