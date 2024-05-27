@@ -1,7 +1,7 @@
-import gleam/option.{None, Option, Some}
-import nakai/html.{Node}
-import nakai/html/attrs
 import gleam/list
+import gleam/option.{type Option, None, Some}
+import nakai/attr
+import nakai/html.{type Node}
 
 pub type Project {
   Project(title: String, details: String, link: Option(String), date: String)
@@ -53,45 +53,41 @@ fn project_component(project: Project) {
   project
   |> maybe_wrap_in_link(project_info(project))
   |> list.prepend([project_details(project)], _)
-  |> html.div([attrs.class("project-container")], _)
+  |> html.div([attr.class("project-container")], _)
 }
 
-fn maybe_wrap_in_link(project: Project, node: Node(a)) -> Node(a) {
+fn maybe_wrap_in_link(project: Project, node: Node) -> Node {
   case project.link {
-    Some(link) -> html.a([attrs.href(link)], [node])
+    Some(link) -> html.a([attr.href(link)], [node])
     None -> node
   }
 }
 
 fn project_info(project: Project) {
-  html.div(
-    [attrs.class("project reveal")],
-    [
-      html.Element("span", [attrs.class("date")], [html.Text(project.date)]),
-      html.Element("span", [attrs.class("title")], [html.Text(project.title)]),
-    ],
-  )
+  html.div([attr.class("project reveal")], [
+    html.Element("span", [attr.class("date")], [html.Text(project.date)]),
+    html.Element("span", [attr.class("title")], [html.Text(project.title)]),
+  ])
 }
 
 fn project_details(project: Project) {
-  html.div(
-    [attrs.class("project-details reveal")],
-    [html.p([], [html.Text(project.details)])],
-  )
+  html.div([attr.class("project-details reveal")], [
+    html.p([], [html.Text(project.details)]),
+  ])
 }
 
-fn projects_grid(children: List(Node(a))) -> Node(a) {
-  html.div([attrs.class("work-grid")], children)
+fn projects_grid(children: List(Node)) -> Node {
+  html.div([attr.class("work-grid")], children)
 }
 
 fn work_animation() {
-  html.div([attrs.id("work-animation")], [])
+  html.div([attr.id("work-animation")], [])
 }
 
-fn node_to_node_list(a: Node(a)) -> List(Node(a)) {
+fn node_to_node_list(a: Node) -> List(Node) {
   [a]
 }
 
-fn work_section(children: List(Node(a))) -> Node(a) {
-  html.section([attrs.id("work")], children)
+fn work_section(children: List(Node)) -> Node {
+  html.section([attr.id("work")], children)
 }
