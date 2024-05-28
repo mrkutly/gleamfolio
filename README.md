@@ -1,1 +1,1 @@
-My portfolio site, built in gleam with nakai.
+My portfolio site, built in gleam with wisp.
